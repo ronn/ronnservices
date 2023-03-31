@@ -3,7 +3,9 @@ package ronn.training.customer;
 import org.springframework.stereotype.Service;
 
 @Service
-public record CustomerService() {
+public record CustomerService(
+        CustomerRepository repo
+) {
     public void register(CustomerRegistrationRequest cr) {
         Customer c = Customer.builder()
                 .firstName(cr.firstName())
@@ -12,5 +14,7 @@ public record CustomerService() {
                 .build();
 
         //TODO check CR validity
+
+        repo.save(c);
     }
 }
