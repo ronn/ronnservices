@@ -19,7 +19,7 @@ public record CustomerService(
        repo.saveAndFlush(c);
         //TODO check if fraudster
         FraudCheckResponse fcResponse = restTemplate.getForObject(
-                "http://localhost:808/v1/frad-check/{customerId}",
+                "http://localhost:8081/api/v1/fraud-check/{customerId}",
                 FraudCheckResponse.class,
                 c.getId()
         );
